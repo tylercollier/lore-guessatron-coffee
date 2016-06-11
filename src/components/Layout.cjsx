@@ -1,11 +1,11 @@
 React = require('react')
+{ Component } = React
 Header = require('./Header')
 ColorCreator = require('./ColorCreator')
 
-module.exports = React.createClass
-  displayName: 'Layout'
+module.exports = class Layout extends Component
 
-  render: ->
+  render: =>
      <div>
       <Header />
       <div className="container">
@@ -14,7 +14,7 @@ module.exports = React.createClass
             <ColorCreator/>
           </div>
           <div className="col-md-offset-1 col-md-7">
-            {React.cloneElement(this.props.children || <span/>)}
+            {React.cloneElement(@props.children || <span/>)}
           </div>
         </div>
       </div>

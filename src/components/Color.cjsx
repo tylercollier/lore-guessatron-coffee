@@ -1,13 +1,12 @@
 React = require('react')
+{ Component } = React
 Router = require('react-router')
 
-module.exports = React.createClass
-  displayName: 'Color'
-
-  propTypes:
+module.exports = class Color extends Component
+  @propTypes:
     color: React.PropTypes.object.isRequired
 
-  render: ->
+  render: =>
     color = @props.color
 
     <Router.Link

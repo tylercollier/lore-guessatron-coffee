@@ -1,4 +1,5 @@
 React = require('react')
+{ Component } = React
 randomColor = require('randomcolor')
 
 # Returns a random integer between min and max
@@ -19,10 +20,8 @@ getBragPhrase = ->
 
 module.exports = lore.connect (getState, props) ->
   color: getState('color.byId', id: props.params.colorId)
-, React.createClass
-  displayName: 'Guessatron'
-
-  propTypes:
+, class Guessatron extends Component
+  @propTypes:
     color: React.PropTypes.object.isRequired
 
   getStyles: ->
@@ -31,7 +30,7 @@ module.exports = lore.connect (getState, props) ->
       width: '64px'
       backgroundColor: randomColor()
 
-  render: ->
+  render: =>
     color = @props.color
     styles = @getStyles()
     bragPhrase = getBragPhrase()

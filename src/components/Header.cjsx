@@ -1,8 +1,8 @@
 React = require('react')
+{ Component } = React
 Router = require('react-router')
 
-module.exports = React.createClass
-  displayName: 'Header'
+module.exports = class Header extends Component
 
   render: ->
     <nav className="navbar navbar-default navbar-static-top">

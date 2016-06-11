@@ -4,11 +4,11 @@ component subscribed to the store.
 ###
 
 React = require('react')
+{ Component } = React
 
 module.exports = lore.connect {subscribe: true}, (getState, props) ->
   {}
-, React.createClass
-    displayName: 'Master'
+, class Master extends Component
 
     render: ->
       <div>

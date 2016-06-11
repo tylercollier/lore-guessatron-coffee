@@ -1,27 +1,26 @@
 React = require('react')
+{ Component } = React
 Color = require('./Color')
 
 ENTER_KEY = 13
 
 module.exports = lore.connect (getState, props) ->
   colors: getState('color.find')
-, React.createClass
-  displayName: 'ColorCreator'
-
-  propTypes:
+, class ColorCreator extends Component
+  @propTypes:
     colors: React.PropTypes.object.isRequired
 
-  getInitialState: ->
-    newColor: ''
+  constructor: ->
+    @state = newColor: ''
 
-  onChangeNewColor: (event) ->
+  onChangeNewColor: (event) =>
     @setState newColor: event.target.value
 
-  onKeyDownNewColor: (event) ->
+  onKeyDownNewColor: (event) =>
     return if event.charCode != ENTER_KEY
     @onCreateColor()
 
-  onCreateColor: ->
+  onCreateColor: =>
     value = @state.newColor.trim()
     if value
       lore.actions.color.create name: value
@@ -30,7 +29,7 @@ module.exports = lore.connect (getState, props) ->
   renderColor: (color) ->
     <Color key={color.id || color.cid} color={color}/>
 
-  render: ->
+  render: =>
     colors = @props.colors
 
     <div>
@@ -40,16 +39,16 @@ module.exports = lore.connect (getState, props) ->
           type="text"
           className="form-control"
           placeholder="What color should Guessatron display?"
-          value={this.state.newColor}
-          onKeyPress={this.onKeyDownNewColor}
-          onChange={this.onChangeNewColor} />
+          value={@state.newColor}
+          onKeyPress={@onKeyDownNewColor}
+          onChange={@onChangeNewColor} />
         <span className="input-group-btn">
-          <button className="btn btn-default" type="button" onClick={this.onCreateColor}>
+          <button className="btn btn-default" type="button" onClick={@onCreateColor}>
             Create
           </button>
         </span>
       </div>
       <div className="list-group" style={{paddingTop: '16px'}}>
-        {colors.data.map(this.renderColor)}
+        {colors.data.map(@renderColor)}
       </div>
     </div>

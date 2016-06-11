@@ -15,7 +15,7 @@ module.exports = React.createClass({
               <ColorCreator/>
             </div>
             <div className="col-md-offset-1 col-md-7">
-              {/* Guessatron's result will go here */}
+              {React.cloneElement(this.props.children || <span/>)}
             </div>
           </div>
         </div>

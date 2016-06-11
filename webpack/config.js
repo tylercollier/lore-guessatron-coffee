@@ -35,7 +35,7 @@ module.exports = function(settings) {
       })
     ],
     resolve: {
-      extensions: ['', '.js', '.jsx'],
+      extensions: ['', '.js', '.jsx', '.cjsx'],
       alias: {
         'react': APP_ROOT + '/node_modules/react'
       }
@@ -55,6 +55,12 @@ module.exports = function(settings) {
           test: /\.js$/,
           loaders: ['babel-loader'],
           include: path.join(APP_ROOT, '..', '..', 'src')
+        },{
+          test: /\.cjsx$/,
+          loaders: ['coffee', 'cjsx']
+        },{
+          test: /\.coffee$/,
+          loader: 'coffee'
         },{
           test: /\.css/,
           loader: 'style-loader!css-loader'

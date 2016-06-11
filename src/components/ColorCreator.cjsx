@@ -7,23 +7,32 @@ module.exports = lore.connect (getState, props) ->
   colors: getState('color.find')
 , React.createClass
   displayName: 'ColorCreator'
-  propTypes: colors: React.PropTypes.object.isRequired
+
+  propTypes:
+    colors: React.PropTypes.object.isRequired
+
   getInitialState: ->
     newColor: ''
+
   onChangeNewColor: (event) ->
     @setState newColor: event.target.value
+
   onKeyDownNewColor: (event) ->
     return if event.charCode != ENTER_KEY
     @onCreateColor()
+
   onCreateColor: ->
     value = @state.newColor.trim()
     if value
       lore.actions.color.create name: value
       @setState newColor: ''
+
   renderColor: (color) ->
     <Color key={color.id || color.cid} color={color}/>
+
   render: ->
     colors = @props.colors
+
     <div>
       <h2>Color Requests</h2>
       <div className="input-group">

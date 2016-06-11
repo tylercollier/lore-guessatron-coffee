@@ -21,17 +21,21 @@ module.exports = lore.connect (getState, props) ->
   color: getState('color.byId', id: props.params.colorId)
 , React.createClass
   displayName: 'Guessatron'
+
   propTypes:
     color: React.PropTypes.object.isRequired
+
   getStyles: ->
     media:
       height: '64px'
       width: '64px'
       backgroundColor: randomColor()
+
   render: ->
     color = @props.color
     styles = @getStyles()
     bragPhrase = getBragPhrase()
+
     <div>
       <h2>Guessatron Result</h2>
       <div className="media">

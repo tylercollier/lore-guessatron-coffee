@@ -16,6 +16,7 @@ First start the backend API server:
 
 ```
 cd lore-tutorial-server
+npm install
 npm start
 ```
 
